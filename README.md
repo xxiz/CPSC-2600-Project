@@ -27,27 +27,27 @@ The goal of this project is to build a finance tracker based around my Google Sh
 
 ## Models
 
-### User
+<!-- ### User
 - _id (unique identifier)
 - username
 - password (BCrypt)
 - email
 - first_name
 - last_name
-- date_of_birth
+- date_of_birth -->
 
 ### Income
 - _id (unique identifier)
-- user_id (foreign key to User model)
+<!-- - user_id (foreign key to User model) -->
 - type (Job, Hustle, etc.)
 - source_label
 - amount
 - date_received
-- index on user_id field
+<!-- - index on user_id field -->
 
 ### Subscription
 - _id (unique identifier)
-- user_id (foreign key to User model)
+<!-- - user_id (foreign key to User model) -->
 - type (Need Or Want)
 - status
 - category
@@ -57,11 +57,11 @@ The goal of this project is to build a finance tracker based around my Google Sh
 - annual_cost (how much does this cost per year?)
 - description (optional)
 - renewal_date (optional)
-- index on user_id, category, and provider fields
+- index on category, and provider fields
 
 ### Big Expense
 - _id (unique identifier)
-- user_id (foreign key to User model)
+<!-- - user_id (foreign key to User model) -->
 - type (Need Or Want)
 - status
 - category
@@ -71,20 +71,20 @@ The goal of this project is to build a finance tracker based around my Google Sh
 - longevity (how long will this expense last me?)
 - price_per_year (how much does this cost per year?)
 - description (optional)
-- index on user_id, category, and provider fields
+- index on category, and provider fields
 
 ### Savings
 - _id (unique identifier)
-- user_id (foreign key to User model)
+<!-- - user_id (foreign key to User model) -->
 - account_type (TFSA, RRSP, etc.)
 - total_amount
-- index on user_id field
+<!-- - index on user_id field -->
 
 ### Savings Deposit
 - _id (unique identifier)
-- user_id (foreign key to User model)
+<!-- - user_id (foreign key to User model) -->
 - savings_id (foreign key to Savings model)
 - amount
 - date_deposited
 - percentage_of_total_savings
-- index on user_id and savings_id fields
+- index on savings_id fields

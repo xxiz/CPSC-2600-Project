@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
 // const userSchema = new mongoose.Schema({
 //     username: { type: String, required: true },
@@ -10,7 +10,7 @@ import mongoose from "mongoose";
 // });
 
 const incomeSchema = new mongoose.Schema({
-    user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    // user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     type: { type: String, required: true },
     source_label: { type: String, required: true },
     amount: { type: Number, required: true },
@@ -18,7 +18,7 @@ const incomeSchema = new mongoose.Schema({
 });
 
 const subscriptionSchema = new mongoose.Schema({
-    user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    // user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     type: { type: String, required: true },
     status: { type: String, required: true },
     category: { type: String, required: true },
@@ -31,7 +31,7 @@ const subscriptionSchema = new mongoose.Schema({
 });
 
 const bigExpenseSchema = new mongoose.Schema({
-    user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    // user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     type: { type: String, required: true },
     status: { type: String, required: true },
     category: { type: String, required: true },
@@ -44,13 +44,14 @@ const bigExpenseSchema = new mongoose.Schema({
 });
 
 const savingsSchema = new mongoose.Schema({
-    user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    // user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     account_type: { type: String, required: true },
     total_amount: { type: Number, required: true },
+    transactions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'SavingsDeposit' }],
 });
 
 const savingsDepositSchema = new mongoose.Schema({
-    user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    // user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     savings_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Savings', required: true },
     amount: { type: Number, required: true },
     date_deposited: { type: Date, required: true },
