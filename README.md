@@ -1,90 +1,29 @@
-# CPSC-2600-Project
-The goal of this project is to build a finance tracker based around my Google Sheets which I currently use to track various expenses etc. This finance tracker is meant to be self-hosted and does not expect user signups. There will be an option to store multiple user data.
+# CPSC-2600 Project
 
-## Features
+## Idea
+This project will be based around notifications for a forum called "RedFlagDeals" where: users can sign up to recieve customized/filtered notifications (if there is enough time). After which they can user eithe a: webhook or a ntfy server to recieve notifications.
 
-### Monthly
-- [ ] Track Income (Source, Amount, Date Received)
-- [ ] Track Subscriptions (Category, Amount, Date Spent)
-- [ ] Track Big Expenses (Category, Amount, Date Spent)
-- [ ] Savings Management (Given a personal set formula, calculate how much to save each month)
-    - [ ] Uses a Savings Split Sheet to determine this
-- [ ] Savings Location (TFSA, RRSP, etc.)
-- [ ] Monthly Breakdown of Expenses (Category, Percentage)
-- [ ] Track Portfolio (Stock, Amount, Date Bought) - MAYBE?
-- [ ] Track Crypto (Crypto, Amount, Date Bought) - MAYBE?
+## How it will work
+Updating Deals
+- Where it will incrementally check every few minutes and update the local database of trending deals every x seconds (Using https://www.npmjs.com/package/node-cron to acomplish this or setup a some form of script to automate this) no matter user settings.
 
-### Yearly
-- [ ] Yearly Breakdown of Income (Source, Percentage)
-- [ ] Yearly Breakdown of Savings (Savings Location, Percentage)
-- [ ] Yearly Breakdown of Subscriptions (Category, Percentage)
-- [ ] Yearly Breakdown of Big Expenses (Category, Percentage)
-- [ ] Yearly Breakdown of Portfolio (Stock, Percentage) - MAYBE?
-- [ ] Yearly Breakdown of Crypto (Crypto, Percentage) - MAYBE?
+Notification Delivery
+- Webhooks: Which are very straightforward
+- Ntfy: An open source self-hostable notification server (https://ntfy.sh/)
+- TBA: More to come maybe
 
-### Other
-- [ ] Sick UI (Graphs, Charts, etc.)
+User Handling
+- Users are able to register and login with nothing more than a username and password (no email verification required)
+- Users are able to set their own notification settings such as: regex matching for the deals
+- Users are able to set their own notification delivery method (webhook or ntfy)
+- TBA: Selectable scraping sections
+- TBA: Users can customize their own scraping settings (if there is enough time)
 
-## Models
-
-<!-- ### User
-- _id (unique identifier)
-- username
-- password (BCrypt)
-- email
-- first_name
-- last_name
-- date_of_birth -->
-
-### Income
-- _id (unique identifier)
-<!-- - user_id (foreign key to User model) -->
-- type (Job, Hustle, etc.)
-- source_label
-- amount
-- date_received
-<!-- - index on user_id field -->
-
-### Subscription
-- _id (unique identifier)
-<!-- - user_id (foreign key to User model) -->
-- type (Need Or Want)
-- status
-- category
-- amount
-- provider
-- tags
-- annual_cost (how much does this cost per year?)
-- description (optional)
-- renewal_date (optional)
-- index on category, and provider fields
-
-### Big Expense
-- _id (unique identifier)
-<!-- - user_id (foreign key to User model) -->
-- type (Need Or Want)
-- status
-- category
-- amount
-- provider
-- tags
-- longevity (how long will this expense last me?)
-- price_per_year (how much does this cost per year?)
-- description (optional)
-- index on category, and provider fields
-
-### Savings
-- _id (unique identifier)
-<!-- - user_id (foreign key to User model) -->
-- account_type (TFSA, RRSP, etc.)
-- total_amount
-<!-- - index on user_id field -->
-
-### Savings Deposit
-- _id (unique identifier)
-<!-- - user_id (foreign key to User model) -->
-- savings_id (foreign key to Savings model)
-- amount
-- date_deposited
-- percentage_of_total_savings
-- index on savings_id fields
+## Requirements
+- MongoDB stores:
+    - User Data
+    - TBA: Customized deal history
+    - Notification History
+    - All Deal history
+- Express for the Backend
+- ReactJs for the Frontend
