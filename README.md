@@ -27,3 +27,12 @@ User Handling
     - All Deal history
 - Express for the Backend
 - ReactJs for the Frontend
+
+
+## Stack
+
+### Frontend
+- TailwindCSS (https://tailwindcss.com/) is a utility CSS framework which makes life easier by being able to type css in a more readable way and improves overall efficency
+- ReactJS (https://reactjs.org/) is a javascript library for building user interfaces
+- TypeScript (https://www.typescriptlang.org/) is a typed superset of javascript which improves overall code quality and readability
+- React-Router (https://reactrouter.com/) is a library for routing in react

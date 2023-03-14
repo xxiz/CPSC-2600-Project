@@ -1,34 +1,24 @@
-import "../index.css";
-import { Outlet } from "react-router-dom";
+// import Header from "./Header";
 
-// import NavBar from "@/components/navigation/NavBar";
+import NavBar from "./NavBar";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface ILayoutComponentProps { }
+interface LayoutProps {
+    title?: string;
+    children: React.ReactNode;
+}
 
-function Layout(props: ILayoutComponentProps) {
+function Layout({ title, children }: LayoutProps) {
+
+    title = title || "Track Deals!";
     return (
-        <div>
-          NavBar
-            {/* <NavBar
-        links={[
-          {
-            label: "Standings",
-            link: "/standings",
-          },
-          {
-            label: "Login",
-            link: "/auth/login",
-          },
-        ]}
-      /> */}
-
-            {/* An <Outlet> renders whatever child route is currently active,
-            so you can think about this <Outlet> as a placeholder for
-            the child routes we defined above. */}
-            <Outlet />
-        </div>
+        <>
+            {/* <Header title={title} /> */}
+            <NavBar />
+            <div className="container mx-auto max-w-5xl my-5">
+                {children}
+            </div>
+        </>
     );
-};
+}
 
 export default Layout;
