@@ -1,10 +1,15 @@
+// This NavBar is a modified version of: https://tailwindui.com/components/application-ui/navigation/navbars
+// The original code is licensed under the MIT License.
+
 import { Disclosure } from '@headlessui/react'
 import { Icon } from "@iconify/react";
 
 const navigation = [
     { name: 'Home', href: '/', current: true },
     { name: 'Dashboard', href: '#', current: false },
-]
+    { name: 'Deals', href: '/deals', current: false },
+    { name: 'About', href: '#', current: false },
+]    
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
@@ -30,15 +35,13 @@ function NavBar() {
                             </div>
                             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                                 <div className="flex flex-shrink-0 items-center">
-                                    <img
-                                        className="block h-8 w-auto lg:hidden"
-                                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                                        alt="Your Company"
+                                    <Icon
+                                        className="block h-8 w-auto lg:hidden text-red-500"
+                                        icon="mdi:coupon"
                                     />
-                                    <img
-                                        className="hidden h-8 w-auto lg:block"
-                                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                                        alt="Your Company"
+                                    <Icon
+                                        className="hidden h-8 w-auto lg:block text-red-500"
+                                        icon="mdi:coupon"
                                     />
                                 </div>
                                 <div className="hidden sm:ml-6 sm:block">
