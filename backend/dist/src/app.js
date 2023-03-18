@@ -1,12 +1,15 @@
+"use strict";
 // const mongoose = require('mongoose');
 // const Schema = mongoose.Schema;
 // const Deal = require('./models/deal');
 // const express = require('express');
 // require('dotenv').config();
-
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
 // const app = express();
 // const PORT = 3001;
-
 // app.get('/', (req: any, res: any) => {
 //     const deals = [
 //         {
@@ -98,17 +101,14 @@
 //         }
 //     });
 // });
-
 // app.listen(PORT, () => {
 //     console.log(`Running On http://localhost:${PORT}`);
 // });
-
-import express from 'express';
-import router from './routes';
-
-const app = express();
-app.use('/', router);
-
+const express_1 = __importDefault(require("express"));
+require('dotenv').config();
+const routes_1 = __importDefault(require("./routes"));
+const app = (0, express_1.default)();
+app.use('/', routes_1.default);
 app.listen(3000, () => {
     console.log('Example app listening on port 3000!');
 });

@@ -1,9 +1,11 @@
+import mongoose, { Schema } from 'mongoose';
+
 const DealSchema = new Schema({
     title: { type: String, required: true },
     topic: { type: String, required: false },
     link: { type: String, required: true },
     description: { type: String, required: false },
-    last_updated: { type: Date, required: true },
+    last_updated: { type: String, required: true },
     votes: { type: Number, required: true },
     raw: {
         last_updated: String,
@@ -15,4 +17,4 @@ const DealSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Deal', DealSchema);
+export default mongoose.model('Deal', DealSchema);

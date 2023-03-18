@@ -1,15 +1,12 @@
-"use strict";
 // const mongoose = require('mongoose');
 // const Schema = mongoose.Schema;
 // const Deal = require('./models/deal');
 // const express = require('express');
 // require('dotenv').config();
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
+
 // const app = express();
 // const PORT = 3001;
+
 // app.get('/', (req: any, res: any) => {
 //     const deals = [
 //         {
@@ -101,14 +98,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //         }
 //     });
 // });
+
 // app.listen(PORT, () => {
 //     console.log(`Running On http://localhost:${PORT}`);
 // });
-const express_1 = __importDefault(require("express"));
+
+import express from 'express';
+import mongoose from 'mongoose';
+import connection from './db/conn'
+
 require('dotenv').config();
-const routes_1 = __importDefault(require("./routes"));
-const deal_1 = __importDefault(require("./models/deal"));
-deal_1.default.insertMany([
+
+import router from './routes';
+import Deal from './models/deal';
+
+Deal.insertMany([
     {
         title: 'Deal 1',
         topic: 'Public Mobile',
@@ -126,8 +130,10 @@ deal_1.default.insertMany([
         }
     },
 ]);
-const app = (0, express_1.default)();
-app.use('/', routes_1.default);
+
+const app = express();
+app.use('/', router);
+
 app.listen(3000, () => {
     console.log(`Backend running on http://localhost:3000`);
 });
