@@ -7,7 +7,6 @@ const mongoose_1 = __importDefault(require("mongoose"));
 require('dotenv').config();
 const connection = mongoose_1.default.connect(process.env.MONGO_URI || "mongodb://user:pass@localhost:54413", {
     useUnifiedTopology: true,
-    useCreateIndex: true,
 });
 if (connection) {
     console.log('Connected to MongoDB');
