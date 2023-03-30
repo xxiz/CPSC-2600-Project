@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const node_cron_1 = __importDefault(require("node-cron"));
 const conn_1 = __importDefault(require("./db/conn"));
 require('dotenv').config();
 const routes_1 = __importDefault(require("./routes"));
@@ -37,6 +38,10 @@ let sample_deal = [
 ];
 const app = (0, express_1.default)();
 app.use('/', routes_1.default);
+node_cron_1.default.schedule('*/5 * * * * *', () => {
+    const now = new Date();
+    console.log(`Current time is ${now.toLocaleTimeString()}`);
+});
 app.listen(3000, () => {
     console.log(`Backend running on http://localhost:3000`);
 });

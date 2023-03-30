@@ -1,4 +1,5 @@
 import express from 'express';
+import cron from 'node-cron';
 import connection from './db/conn'
 
 require('dotenv').config();
@@ -37,6 +38,11 @@ let sample_deal = [
 
 const app = express();
 app.use('/', router);
+
+cron.schedule('*/5 * * * * *', () => {
+    const now = new Date();
+    console.log(`Current time is ${now.toLocaleTimeString()}`);
+});
 
 app.listen(3000, () => {
     console.log(`Backend running on http://localhost:3000`);
