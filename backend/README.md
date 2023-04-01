@@ -8,15 +8,15 @@ The backend runs on Express and automatically scrapes the RedFlagDeals forum and
 - **Database**: [MongoDB](https://www.mongodb.com/)
 
 ### Packages
-- [axios](https://www.npmjs.com/package/axios) is a promise based HTTP client to make HTTP requests to the RedFlagDeals forum
-- [cheerio](https://www.npmjs.com/package/cheerio) is a library to parse HTML
-- [node-cron](https://www.npmjs.com/package/node-cron) is a library to run a function on a schedule
-- [dotenv](https://www.npmjs.com/package/dotenv) is a library to load environment variables from a .env file
-- [mongoose](https://www.npmjs.com/package/mongoose) is an Object Data Modeling (ODM) library for MongoDB and NodeJS
-- [nodemon](https://www.npmjs.com/package/nodemon) is a library to automatically restart the server when changes are made
-- [typescript](https://www.npmjs.com/package/typescript) is a typed superset of javascript which improves overall code quality and readability
-- [eslint](https://www.npmjs.com/package/eslint) is a library to lint the code to improve code quality
-- [moment](https://www.npmjs.com/package/moment) is a library to parse, validate, manipulate, and display dates and times in javascript
+- [axios](https://www.npmjs.com/package/axios) - A promise based HTTP client used to make HTTP requests to the RedFlagDeals forum to scrape the latest deals.
+- [cheerio](https://www.npmjs.com/package/cheerio) - A library used to parse HTML and extract the relevant data from the scraped pages.
+- [dotenv](https://www.npmjs.com/package/dotenv) - A library used to load environment variables from a .env file, which includes the database connection string.
+- [mongoose](https://www.npmjs.com/package/mongoose) - An Object Data Modeling (ODM) library used to interact with the MongoDB database where the deals are stored.
+- [node-cron](https://www.npmjs.com/package/node-cron) - A library used to schedule the scraping function to run at regular intervals.
+- [moment](https://www.npmjs.com/package/moment) - A library used to parse, validate, manipulate, and display dates and times in javascript.
+- [typescript](https://www.npmjs.com/package/typescript) - A typed superset of javascript used to improve overall code quality and readability.
+- [eslint](https://www.npmjs.com/package/eslint) - A library used to lint the code to improve code quality.
+- [nodemon](https://www.npmjs.com/package/nodemon) - A library used to automatically restart the server when changes are made during development.
 
 ### Project
 - `dist/*` - Contains the compiled typescript files
