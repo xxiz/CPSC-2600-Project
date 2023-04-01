@@ -14,16 +14,17 @@ import { pushDeals } from './utils/database';
 connection.then(() => {
     console.log('Connected to MongoDB');
     Deal.find({}).then((deals) => {
-        console.log(deals);
+        console.log(`${deals.length} deals found in database`);
     });
     ScrapeResult.find({}).then((scrapeResults) => {
-        console.log(scrapeResults);
+        console.log(`${scrapeResults.length} scrape results found in database`);
     });
 }).catch((err) => {
     console.log('Error connecting to MongoDB', err);
 });
 
 const app = express();
+app.use(express.json());
 app.use('/', customRoutes);
 app.use(cors({
     origin: [
@@ -32,13 +33,12 @@ app.use(cors({
     ]
 }));
 
-cron.schedule('*/100 * * * * *', () => {
+cron.schedule('* 5 * * * *', () => {
     const result = scrape(1);
 
     result.then((result) => {
         pushDeals(result);
     });
-
 });
 
 app.listen(3000, () => {

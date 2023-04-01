@@ -16,15 +16,16 @@ const database_1 = require("./utils/database");
 conn_1.default.then(() => {
     console.log('Connected to MongoDB');
     dealModel_1.default.find({}).then((deals) => {
-        console.log(deals);
+        console.log(`${deals.length} deals found in database`);
     });
     scrapeResultModel_1.default.find({}).then((scrapeResults) => {
-        console.log(scrapeResults);
+        console.log(`${scrapeResults.length} scrape results found in database`);
     });
 }).catch((err) => {
     console.log('Error connecting to MongoDB', err);
 });
 const app = (0, express_1.default)();
+app.use(express_1.default.json());
 app.use('/', routes_1.default);
 app.use((0, cors_1.default)({
     origin: [
@@ -32,7 +33,7 @@ app.use((0, cors_1.default)({
         'http://projects.ashwin.lol/', // production
     ]
 }));
-node_cron_1.default.schedule('*/100 * * * * *', () => {
+node_cron_1.default.schedule('* 5 * * * *', () => {
     const result = (0, scrape_1.scrape)(1);
     result.then((result) => {
         (0, database_1.pushDeals)(result);

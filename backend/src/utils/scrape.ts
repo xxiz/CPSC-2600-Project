@@ -7,7 +7,6 @@ async function scrape(page: number = 1): Promise<IScrapeReturn> {
 
     const start_time = new Date().getTime();
 
-    console.log('Scraping RFD for deals...'); // debug
     // determine the URL to scrape based on the page number if provided
     const TRENDING = page > 1 ? `https://forums.redflagdeals.com/hot-deals-f9/trending/${page}` : 'https://forums.redflagdeals.com/hot-deals-f9/trending/';
 
@@ -50,6 +49,7 @@ async function scrape(page: number = 1): Promise<IScrapeReturn> {
 
     // Sanitize the deals so it's easier to work with
     let sanitized = deals.map(deal => sanitize(deal));
+    console.log(`Scraped ${sanitized.length} deals`);
 
     return {
         data: sanitized,
