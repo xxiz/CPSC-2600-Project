@@ -13,6 +13,13 @@ export interface IScrapeResult {
     elapsed_ms: number;
     deals: IDeal[];
 }
+
+export interface IUser {
+    username: string;
+    webhook_url?: string;
+    ntfy_url?: string;
+}
+
 export interface IScrapeReturn {
     data: IDeal[];
     start_time: number;

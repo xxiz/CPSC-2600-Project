@@ -84,28 +84,4 @@ function purgeDeals(req: Request, res: Response) {
     });
 }
 
-// Scrape deals
-function forceRunDeals(req: Request, res: Response) {
-
-    try {
-        const result = scrape(1);
-
-        result.then((result) => {
-            pushDeals(result);
-
-            res.send({
-                success: true,
-                message: 'Scrape successful'
-            });
-        });
-
-    } catch (err) {
-        res.status(500).send({
-            success: false,
-            message: err.message
-        });
-    }
-}
-
-
 export { getDeals, getDealByID, addDeals, deleteDealByID, purgeDeals };

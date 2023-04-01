@@ -1,4 +1,4 @@
-import express, { Router } from 'express';
+import { Router } from 'express';
 import { getDeals, addDeals, deleteDealByID, getDealByID, purgeDeals } from '../controllers/dealController';
 
 const router = Router();
