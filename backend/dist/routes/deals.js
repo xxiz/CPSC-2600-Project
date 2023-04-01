@@ -18,4 +18,7 @@ router.get('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     (0, dealController_1.deleteDealByID)(req, res);
 });
+router.get('/run', (req, res) => {
+    res.send('no');
+});
 exports.default = router;

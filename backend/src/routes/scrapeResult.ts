@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import express, { Router } from 'express';
 import { getScrapeResults, getScrapeResultByID, getLatestScrapeResult, getLimitScrapeResult } from '../controllers/scrapeResultController';
 
 const router = Router();
