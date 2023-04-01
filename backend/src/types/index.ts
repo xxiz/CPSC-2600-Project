@@ -1,16 +1,19 @@
-export type Deal = {
+export interface IDeal {
     title: string;
-    topic?: string;
-    link: string;
+    url: string;
     description?: string;
     last_updated: string;
     votes: number;
-    raw?: {
-        last_updated?: string;
-        votes?: string;
-        description?: string;
-        link?: string;
-        topic?: string;
-        title?: string;
-    };
+    replies: number;
+}
+
+export interface IScrapeResult {
+    count: number;
+    timestamp: number;
+    elapsed_ms: number;
+    deals: IDeal[];
+}
+export interface IScrapeReturn {
+    data: IDeal[];
+    start_time: number;
 }

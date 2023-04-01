@@ -8,10 +8,7 @@ require('dotenv').config();
 const connection = mongoose_1.default.connect(process.env.MONGO_URI || "mongodb://user:pass@localhost:54413", {
     useUnifiedTopology: true,
 });
-if (connection) {
-    console.log('Connected to MongoDB');
-}
-else {
+if (!connection) {
     console.log('Error connecting to MongoDB');
 }
 exports.default = connection;

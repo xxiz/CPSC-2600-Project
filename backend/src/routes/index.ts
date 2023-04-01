@@ -1,12 +1,14 @@
 import { Router } from 'express';
 import Deals from './deals';
-import Filters from './filters';
+import ScrapeResult from './scrapeResult';
 
 const router = Router();
 
-// /api/v1 router
+router.get('/', (req, res) => {
+    res.send('no')
+});
 
-router.use('/api/v1/', Deals);
-router.use('/api/v1/', Filters);
+router.use('/api/v1/deals', Deals);
+router.use('/api/v1/scrapes', ScrapeResult);
 
 export default router;
