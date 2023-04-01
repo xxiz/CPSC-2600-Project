@@ -1,47 +1,48 @@
 import express, { Request, Response } from "express";
 import axios from "axios";
-import { MessageBuilder, Webhook } from "discord-webhook-node";
 import User from "../models/userModel";
 
-// Refrence: https://birdie0.github.io/discord-webhooks-guide/discord_webhook.html
-function sendWebhookNotification(req: Request, res: Response) {
+async function sendWebhookNotification(req: Request, res: Response) {
+  try {
+    const { webhook_url, username, deal } = req.body;
+    const lastUpdatedDate = new Date(deal.last_updated);
+    const lastUpdatedString = lastUpdatedDate.toLocaleString();
 
-    try {
-        const username = req.body.username;
-        const deal = req.body.deal;
+    // const user = await User.findOne({ username: username });
+    
+    // if (!user) {
+    //   return res.status(404).send({
+    //     success: false,
+    //     message: "User not found"
+    //   });
+    // }
 
-        const lastUpdatedDate = new Date(deal.last_updated);
-        const lastUpdatedString = lastUpdatedDate.toLocaleString();
+    const webhookUrl = webhook_url;
+    const embed = {
+      username: "SalesScout Notification",
+      title: deal.title,
+      url: deal.url,
+      description: `
+        **Date:** ${lastUpdatedString}
+        **Votes:** ${deal.votes}
+        **Replies:** ${deal.replies}
+        **Last Updated:** ${lastUpdatedString}
+      `
+    };
 
-        User.findOne({ username: username }).then((user) => {
-            if (!user) {
-                res.status(400).send({
-                    success: false,
-                    message: "User not found"
-                });
-            } else {
-                const webhook = user.webhook_url;
-                const hook = new Webhook(webhook);
+    await axios.post(webhookUrl, { embeds: [embed] });
 
-                const embed = new MessageBuilder()
-                    .setTitle(deal.title)
-                    .setUrl(deal.url)
-                    .setDescription(`
-            **Title:** ${deal.title}
-            **Date:** ${lastUpdatedString}
-            **Votes:** ${deal.votes}
-            **Replies:** ${deal.replies}
-            **Last Updated:** ${lastUpdatedString}
-        `);
-            }
-        });
-
-    } catch (err) {
-        res.status(400).send({
-            success: false,
-            message: err.message
-        });
-    }
+    res.status(200).send({
+      success: true,
+      message: "Webhook sent successfully"
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(400).send({
+      success: false,
+      message: err.message
+    });
+  }
 }
 
-export { sendWebhookNotification }
+export { sendWebhookNotification };
