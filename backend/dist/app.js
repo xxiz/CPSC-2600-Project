@@ -33,7 +33,7 @@ app.use((0, cors_1.default)({
         'http://projects.ashwin.lol/', // production
     ]
 }));
-node_cron_1.default.schedule('* 5 * * * *', () => {
+node_cron_1.default.schedule('*/5 * * * *', () => {
     const result = (0, scrape_1.scrape)(1);
     result.then((result) => {
         (0, database_1.pushDeals)(result);

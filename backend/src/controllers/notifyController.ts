@@ -4,20 +4,20 @@ import User from "../models/userModel";
 
 async function sendWebhookNotification(req: Request, res: Response) {
   try {
-    const { webhook_url, username, deal } = req.body;
+    const { username, deal } = req.body;
     const lastUpdatedDate = new Date(deal.last_updated);
     const lastUpdatedString = lastUpdatedDate.toLocaleString();
 
-    // const user = await User.findOne({ username: username });
+    const user = await User.findOne({ username: username });
     
-    // if (!user) {
-    //   return res.status(404).send({
-    //     success: false,
-    //     message: "User not found"
-    //   });
-    // }
+    if (!user) {
+      return res.status(404).send({
+        success: false,
+        message: "User not found"
+      });
+    }
 
-    const webhookUrl = webhook_url;
+    const endpoint = user.webhook_url;
     const embed = {
       username: "SalesScout Notification",
       title: deal.title,
@@ -30,7 +30,7 @@ async function sendWebhookNotification(req: Request, res: Response) {
       `
     };
 
-    await axios.post(webhookUrl, { embeds: [embed] });
+    await axios.post(endpoint, { embeds: [embed] });
 
     res.status(200).send({
       success: true,

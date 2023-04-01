@@ -33,7 +33,7 @@ app.use(cors({
     ]
 }));
 
-cron.schedule('* 5 * * * *', () => {
+cron.schedule('*/5 * * * *', () => {
     const result = scrape(1);
 
     result.then((result) => {

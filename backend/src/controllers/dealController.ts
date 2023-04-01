@@ -1,9 +1,7 @@
 import { Request, Response } from 'express';
 import Deal from '../models/dealModel';
-import { pushDeals } from '../utils/database';
-import { scrape } from '../utils/scrape';
 
-// Get all deals
+// GET /api/v1/deals/
 function getDeals(req: Request, res: Response) {
     Deal.find({}).then((deals) => {
         res.send({
@@ -18,7 +16,7 @@ function getDeals(req: Request, res: Response) {
     });
 }
 
-// Get deals by id
+// GET /api/v1/deals/:id
 function getDealByID(req: Request, res: Response) {
     const id = req.params.id;
 
@@ -35,12 +33,12 @@ function getDealByID(req: Request, res: Response) {
     });
 }
 
-// Add a deal/deals
+// POST /api/v1/deals/
 function addDeals(req: Request, res: Response) {
 
     const deals = req.body;
 
-    Deal.insertMany(deals).then((deals) => {
+    Deal.insertMany(deals).then(() => {
         res.send({
             success: true,
             data: deals
@@ -53,7 +51,7 @@ function addDeals(req: Request, res: Response) {
     });
 }
 
-// Delete a deal by id
+// DELETE /api/v1/deals/:id
 function deleteDealByID(req: Request, res: Response) {
     const id = req.params.id;
 
@@ -70,7 +68,7 @@ function deleteDealByID(req: Request, res: Response) {
     });
 }
 
-// Delete all deals
+// DELETE /api/v1/deals/
 function purgeDeals(req: Request, res: Response) {
     Deal.deleteMany({}).then(() => {
         res.send({

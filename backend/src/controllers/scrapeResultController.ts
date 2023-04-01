@@ -16,23 +16,6 @@ function getScrapeResults(req: Request, res: Response) {
     });
 }
 
-// Get scrape result by id
-function getScrapeResultByID(req: Request, res: Response) {
-    const id = req.params.id;
-
-    ScrapeResult.findById(id).then((scrapeResult) => {
-        res.send({
-            success: true,
-            data: scrapeResult
-        });
-    }).catch((err) => {
-        res.status(400).send({
-            success: false,
-            message: err.message
-        });
-    });
-}
-
 // Get the latest scrape result
 function getLatestScrapeResult(req: Request, res: Response) {
     ScrapeResult.findOne({}).sort({ timestamp: -1 }).then((scrapeResult) => {
@@ -65,4 +48,4 @@ function getLimitScrapeResult(req: Request, res: Response) {
     });
 }
 
-export { getScrapeResults, getScrapeResultByID, getLatestScrapeResult, getLimitScrapeResult };
+export { getScrapeResults, getLatestScrapeResult, getLimitScrapeResult };

@@ -1,24 +1,25 @@
 import { IScrapeReturn } from './../types/index';
 import Deal from './../models/dealModel';
 import ScrapeResult from './../models/scrapeResultModel';
+import User from './../models/userModel';
 
 async function pushDeals(scrapeReturn: IScrapeReturn) {
-    
+
     let deals = [];
 
     if (scrapeReturn.data.length > 0) {
         for (let deal of scrapeReturn.data) {
             const existingDeal = await Deal.findOne({ url: deal.url });
-            
+
             if (existingDeal) {
                 let updateDeal = await Deal.updateOne({ _id: existingDeal._id }, deal);
-                
+
                 if (updateDeal) {
                     deals.push(existingDeal._id);
                 }
             } else {
                 let newDeal = await Deal.create(deal);
-                
+
                 if (newDeal) {
                     deals.push(newDeal._id);
                 }
@@ -38,6 +39,5 @@ async function pushDeals(scrapeReturn: IScrapeReturn) {
 
     return await scrapeResult.save();
 }
-
 
 export { pushDeals };
