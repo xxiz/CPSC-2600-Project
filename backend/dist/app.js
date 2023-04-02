@@ -10,7 +10,7 @@ const cors_1 = __importDefault(require("cors"));
 require('dotenv').config();
 const routes_1 = __importDefault(require("./routes"));
 const dealModel_1 = __importDefault(require("./models/dealModel"));
-const scrapeResultModel_1 = __importDefault(require("./models/scrapeResultModel"));
+const scrapeModel_1 = __importDefault(require("./models/scrapeModel"));
 const scrape_1 = require("./utils/scrape");
 const database_1 = require("./utils/database");
 conn_1.default.then(() => {
@@ -18,8 +18,8 @@ conn_1.default.then(() => {
     dealModel_1.default.find({}).then((deals) => {
         console.log(`${deals.length} deals found in database`);
     });
-    scrapeResultModel_1.default.find({}).then((scrapeResults) => {
-        console.log(`${scrapeResults.length} scrape results found in database`);
+    scrapeModel_1.default.find({}).then((scrape) => {
+        console.log(`${scrape.length} scrape results found in database`);
     });
 }).catch((err) => {
     console.log('Error connecting to MongoDB', err);

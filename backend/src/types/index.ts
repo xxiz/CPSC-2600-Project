@@ -7,7 +7,7 @@ export interface IDeal {
     replies: number;
 }
 
-export interface IScrapeResult {
+export interface IScrape {
     count: number;
     timestamp: number;
     elapsed_ms: number;

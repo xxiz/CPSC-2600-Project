@@ -41,7 +41,7 @@ The backend runs on Express and automatically scrapes the RedFlagDeals forum and
 - `/api/v1/users/:username` - Deletes a specific user from the database
     - Method: `DELETE`
 
-#### ScrapeResult
+#### Scrapes
 - `/api/v1/scrapes` - Returns all the scrape results in the database
     - Method: `GET`
 

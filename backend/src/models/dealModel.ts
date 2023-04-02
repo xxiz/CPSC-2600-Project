@@ -4,7 +4,7 @@ import { IDeal } from '../types';
 
 interface DealDocument extends IDeal, Document {}
 
-const DealSchema = new Schema<DealDocument>({
+const dealSchema = new Schema<DealDocument>({
     title: { type: String, required: true },
     url: { type: String, required: true },
     description: { type: String, required: false },
@@ -13,4 +13,4 @@ const DealSchema = new Schema<DealDocument>({
     replies: { type: Number, required: true },
   });
 
-export default mongoose.model('Deal', DealSchema);
+export default mongoose.model('Deal', dealSchema);

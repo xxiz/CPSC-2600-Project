@@ -7,7 +7,7 @@ require('dotenv').config();
 
 import customRoutes from './routes';
 import Deal from './models/dealModel';
-import ScrapeResult from './models/scrapeResultModel';
+import Scrape from './models/scrapeModel';
 import { scrape } from './utils/scrape';
 import { pushDeals } from './utils/database';
 
@@ -16,8 +16,8 @@ connection.then(() => {
     Deal.find({}).then((deals) => {
         console.log(`${deals.length} deals found in database`);
     });
-    ScrapeResult.find({}).then((scrapeResults) => {
-        console.log(`${scrapeResults.length} scrape results found in database`);
+    Scrape.find({}).then((scrape) => {
+        console.log(`${scrape.length} scrape results found in database`);
     });
 }).catch((err) => {
     console.log('Error connecting to MongoDB', err);

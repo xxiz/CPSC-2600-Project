@@ -1,12 +1,12 @@
 import express, { Request, Response } from "express";
-import ScrapeResult from "../models/scrapeResultModel";
+import Scrape from "../models/scrapeModel";
 
 // Get all scrape results
-function getScrapeResults(req: Request, res: Response) {
-    ScrapeResult.find({}).then((scrapeResults) => {
+function getScrapes(req: Request, res: Response) {
+    Scrape.find({}).then((scrapes) => {
         res.send({
             success: true,
-            data: scrapeResults
+            data: scrapes
         });
     }).catch((err) => {
         res.status(500).send({
@@ -17,11 +17,11 @@ function getScrapeResults(req: Request, res: Response) {
 }
 
 // Get the latest scrape result
-function getLatestScrapeResult(req: Request, res: Response) {
-    ScrapeResult.findOne({}).sort({ timestamp: -1 }).then((scrapeResult) => {
+function getLatestScrape(req: Request, res: Response) {
+    Scrape.findOne({}).sort({ timestamp: -1 }).then((scrape) => {
         res.send({
             success: true,
-            data: scrapeResult
+            data: scrape
         });
     }).catch((err) => {
         res.status(400).send({
@@ -32,13 +32,13 @@ function getLatestScrapeResult(req: Request, res: Response) {
 }
 
 // Get latest x scrape results
-function getLimitScrapeResult(req: Request, res: Response) {
+function getLimitScrapes(req: Request, res: Response) {
     const limit = req.params.limit;
 
-    ScrapeResult.find({}).sort({ timestamp: -1 }).limit(parseInt(limit)).then((scrapeResults) => {
+    Scrape.find({}).sort({ timestamp: -1 }).limit(parseInt(limit)).then((scrapes) => {
         res.send({
             success: true,
-            data: scrapeResults
+            data: scrapes
         });
     }).catch((err) => {
         res.status(400).send({
@@ -48,4 +48,4 @@ function getLimitScrapeResult(req: Request, res: Response) {
     });
 }
 
-export { getScrapeResults, getLatestScrapeResult, getLimitScrapeResult };
+export { getScrapes, getLatestScrape, getLimitScrapes };

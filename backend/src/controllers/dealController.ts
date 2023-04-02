@@ -1,5 +1,6 @@
-import { Request, Response } from 'express';
+import express, { Request, Response } from 'express';
 import Deal from '../models/dealModel';
+
 
 // GET /api/v1/deals/
 function getDeals(req: Request, res: Response) {

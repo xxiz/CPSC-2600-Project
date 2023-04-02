@@ -1,7 +1,6 @@
 import { IScrapeReturn } from './../types/index';
 import Deal from './../models/dealModel';
-import ScrapeResult from './../models/scrapeResultModel';
-import User from './../models/userModel';
+import Scrape from '../models/scrapeModel';
 
 async function pushDeals(scrapeReturn: IScrapeReturn) {
 
@@ -30,14 +29,14 @@ async function pushDeals(scrapeReturn: IScrapeReturn) {
     const end_time = new Date().getTime();
     const elapsed_ms = end_time - scrapeReturn.start_time;
 
-    const scrapeResult = new ScrapeResult({
+    const scrape = new Scrape({
         count: scrapeReturn.data.length,
         timestamp: end_time,
         elapsed_ms,
         deals
     });
 
-    return await scrapeResult.save();
+    return await scrape.save();
 }
 
 export { pushDeals };
