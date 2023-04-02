@@ -1,7 +1,6 @@
 import express, { Request, Response } from "express";
 import Scrape from "../models/scrapeModel";
 
-// Get all scrape results
 function getScrapes(req: Request, res: Response) {
     Scrape.find({}).then((scrapes) => {
         res.send({
@@ -16,7 +15,6 @@ function getScrapes(req: Request, res: Response) {
     });
 }
 
-// Get the latest scrape result
 function getLatestScrape(req: Request, res: Response) {
     Scrape.findOne({}).sort({ timestamp: -1 }).then((scrape) => {
         res.send({
@@ -31,7 +29,6 @@ function getLatestScrape(req: Request, res: Response) {
     });
 }
 
-// Get latest x scrape results
 function getLimitScrapes(req: Request, res: Response) {
     const limit = req.params.limit;
 

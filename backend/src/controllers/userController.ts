@@ -1,7 +1,6 @@
 import express, { Request, Response } from "express";
 import User from "../models/userModel";
 
-// Get all users
 function getUsers(req: Request, res: Response) {
     
     User.find({}).then((users) => {
@@ -17,7 +16,6 @@ function getUsers(req: Request, res: Response) {
     });
 }
 
-// Get user by username
 function getUserByUsername(req: Request, res: Response) {
     User.findOne({ username: req.params.username }).then((user) => {
         res.send({
@@ -32,7 +30,6 @@ function getUserByUsername(req: Request, res: Response) {
     });
 }
 
-// Add a user
 function addUser(req: Request, res: Response) {
 
     const user = req.body;
@@ -58,7 +55,6 @@ function addUser(req: Request, res: Response) {
     });
 }
 
-// Update a user by username
 function updateUserByUsername(req: Request, res: Response) {
 
     const user = req.body;
@@ -76,7 +72,6 @@ function updateUserByUsername(req: Request, res: Response) {
     });
 }
 
-// Delete a user by username
 function deleteUserByUsername(req: Request, res: Response) {
 
     const username = req.params.username;

@@ -17,7 +17,7 @@ export interface IScrape {
 export interface IUser {
     username: string;
     webhook_url?: string;
-    ntfy_url?: string;
+    notification: boolean;
 }
 
 export interface IScrapeReturn {

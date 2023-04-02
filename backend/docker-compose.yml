@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  mongodb:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: pass
+    ports:
+      - "54413:27017"
