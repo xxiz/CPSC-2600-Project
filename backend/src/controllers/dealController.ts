@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import Deal from '../models/dealModel';
+import filterTrendingDeals from '../utils/trending';
 import getTrending from '../utils/trending';
 
 
@@ -20,7 +21,7 @@ function getDeals(req: Request, res: Response) {
 function getTrendingDeals(req: Request, res: Response) {
     Deal.find({}).then((deals) => {
         
-        deals = getTrending(deals)
+        deals = filterTrendingDeals(deals)
         
         res.send({
             success: true,

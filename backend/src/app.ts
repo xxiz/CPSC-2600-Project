@@ -35,7 +35,7 @@ app.use(express.json());
 app.use('/', customRoutes);
 
 // https://github.com/kelektiv/node-cron/blob/master/examples/every_10_minutes.js
-const job = new CronJob('0 */1 * * * *', async () => {
+const job = new CronJob('0 */3 * * * *', async () => {
     
     const result = scrape(1);
 

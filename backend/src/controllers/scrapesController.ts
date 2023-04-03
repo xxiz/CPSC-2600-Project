@@ -15,6 +15,20 @@ function getScrapes(req: Request, res: Response) {
     });
 }
 
+function deleteScrapes(req: Request, res: Response) {
+    Scrape.deleteMany({}).then((scrapes) => {
+        res.send({
+            success: true,
+            data: scrapes
+        });
+    }).catch((err) => {
+        res.status(500).send({
+            success: false,
+            message: err.message
+        });
+    });
+}
+
 function getLatestScrape(req: Request, res: Response) {
     Scrape.findOne({}).sort({ timestamp: -1 }).then((scrape) => {
         res.send({
@@ -45,4 +59,4 @@ function getLimitScrapes(req: Request, res: Response) {
     });
 }
 
-export { getScrapes, getLatestScrape, getLimitScrapes };
+export { getScrapes, getLatestScrape, getLimitScrapes, deleteScrapes };

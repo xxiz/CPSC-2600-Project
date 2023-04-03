@@ -8,7 +8,7 @@ async function notifyUser(user: IUser, deals: IDeal[]): Promise<void> {
   const endpoint = user.webhook_url;
 
   for (const deal of deals) {
-    const isDealSent = user.history.some(async (historyDeal) => {
+    const isDealSent = user.history.find(async (historyDeal) => {
       const foundDeal = await Deal.findById(historyDeal);
       return foundDeal?.url === deal.url;
     });

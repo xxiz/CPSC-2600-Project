@@ -1,10 +1,14 @@
 import express, { Router } from 'express';
-import { getLatestScrape, getLimitScrapes, getScrapes } from '../controllers/scrapesController';
+import { deleteScrapes, getLatestScrape, getLimitScrapes, getScrapes } from '../controllers/scrapesController';
 
 const router = Router();
 
 router.get('/', (req, res) => {
     getScrapes(req, res);
+});
+
+router.delete('/', (req, res) => {
+    deleteScrapes(req, res);
 });
 
 router.get('/latest', (req, res) => {

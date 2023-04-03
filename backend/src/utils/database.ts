@@ -41,9 +41,4 @@ async function pushDeals(scrapeReturn: IScrapeReturn) {
     return await scrape.save();
 }
 
-async function notifyUsers() {
-    // find all users that have notifications enabled
-    // send them the trending deals
-}
-
 export { pushDeals };
