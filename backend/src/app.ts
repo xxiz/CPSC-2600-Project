@@ -6,6 +6,7 @@ import cors from 'cors';
 require('dotenv').config();
 
 import customRoutes from './routes';
+import User from './models/userModel';
 import Deal from './models/dealModel';
 import Scrape from './models/scrapeModel';
 import { scrape } from './utils/scrape';
@@ -35,6 +36,16 @@ cron.schedule('* 3 * * *', () => {
 
     result.then((result) => {
         pushDeals(result);
+
+        // let trending_deals = getTrendingDeals(result);
+        // find all users that have notifications enabled
+        // send them the trending deals
+
+        User.find({ notifications: true }).then((users) => {
+            users.forEach((user) => {
+                
+            });
+        });
     });
 });
 
