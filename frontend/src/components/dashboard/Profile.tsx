@@ -1,3 +1,4 @@
+import { Icon } from "@iconify/react";
 import toast, { Toaster } from "react-hot-toast";
 import { IUser } from "../../types";
 
@@ -8,7 +9,7 @@ type ProfileProps = {
 };
 
 function Profile({ user, setUser, updateUser }: ProfileProps) {
-  
+
   const testWebhook = async () => {
     const endpoint = "http://localhost:3000/api/v1/notify/test";
 
@@ -139,19 +140,19 @@ function Profile({ user, setUser, updateUser }: ProfileProps) {
                   {user.history.map((item, index) => (
                     <div
                       key={index}
-                      className="flex flex-col p-4 mt-4 space-y-2 bg-white rounded-md shadow-md"
+                      className="flex flex-col p-4 mt-2 space-y-2 bg-white rounded-md shadow-md"
                     >
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center">
                           <a
-                            className="text-sm font-semibold text-gray-600"
+                            className="text-sm font-medium text-gray-600"
                             href={item.url}
                           >
-                            {item.title}
+                            {item.title.length > 100 ? item.title.substring(0, 100) + `...` : item.title}
                           </a>
                         </div>
-                        <span className="text-sm font-semibold text-gray-600">
-                          {item.votes}
+                        <span className="flex items-center text-sm font-semibold text-center text-gray-600">
+                          <Icon icon="bxs:upvote" className="mr-1" /> {item.votes}
                         </span>
                       </div>
                     </div>
