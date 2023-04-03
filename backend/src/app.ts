@@ -24,16 +24,13 @@ connection.then(() => {
 });
 
 const app = express();
+app.use(cors({
+    origin: 'http://localhost:3001',
+}));
 app.use(express.json());
 app.use('/', customRoutes);
-app.use(cors({
-    origin: [
-        'http://localhost:3000', // development
-        'http://projects.ashwin.lol/', // production
-    ]
-}));
 
-cron.schedule('*/5 * * * *', () => {
+cron.schedule('* 3 * * *', () => {
     const result = scrape(1);
 
     result.then((result) => {

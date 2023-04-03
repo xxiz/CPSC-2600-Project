@@ -25,15 +25,12 @@ conn_1.default.then(() => {
     console.log('Error connecting to MongoDB', err);
 });
 const app = (0, express_1.default)();
+app.use((0, cors_1.default)({
+    origin: 'http://localhost:3001',
+}));
 app.use(express_1.default.json());
 app.use('/', routes_1.default);
-app.use((0, cors_1.default)({
-    origin: [
-        'http://localhost:3000',
-        'http://projects.ashwin.lol/', // production
-    ]
-}));
-node_cron_1.default.schedule('*/5 * * * *', () => {
+node_cron_1.default.schedule('* 3 * * *', () => {
     const result = (0, scrape_1.scrape)(1);
     result.then((result) => {
         (0, database_1.pushDeals)(result);

@@ -16,6 +16,22 @@ function getDeals(req: Request, res: Response) {
     });
 }
 
+function getTrendingDeals(req: Request, res: Response) {
+    Deal.find({}).then((deals) => {
+
+        res.send({
+            success: true,
+            data: deals
+        });
+        
+    }).catch((err) => {
+        res.status(500).send({
+            success: false,
+            message: err.message
+        });
+    });
+}
+
 function getDealByID(req: Request, res: Response) {
     const id = req.params.id;
 

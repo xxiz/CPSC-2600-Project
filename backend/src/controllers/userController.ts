@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import User from "../models/userModel";
 
 function getUsers(req: Request, res: Response) {
-    
+
     User.find({}).then((users) => {
         res.send({
             success: true,
@@ -18,9 +18,12 @@ function getUsers(req: Request, res: Response) {
 
 function getUserByUsername(req: Request, res: Response) {
     User.findOne({ username: req.params.username }).then((user) => {
-        res.send({
+        user !== null ? res.send({
             success: true,
             data: user
+        }) : res.status(404).send({
+            success: false,
+            message: "User not found"
         });
     }).catch((err) => {
         res.status(400).send({

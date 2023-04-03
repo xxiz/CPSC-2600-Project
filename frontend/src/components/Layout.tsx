@@ -10,11 +10,12 @@ interface LayoutProps {
 function Layout({ title, children }: LayoutProps) {
 
     title = title || "Track Deals!";
+    
     return (
         <>
             {/* <Header title={title} /> */}
             <NavBar />
-            <div className="container mx-auto max-w-5xl my-5">
+            <div className="container max-w-5xl mx-auto my-5">
                 {children}
             </div>
         </>

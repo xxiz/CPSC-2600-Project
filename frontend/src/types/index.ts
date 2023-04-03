@@ -20,8 +20,3 @@ export interface IUser {
     notification: boolean;
     history: IDeal[];
 }
-
-export interface IScrapeReturn {
-    data: IDeal[];
-    start_time: number;
-}

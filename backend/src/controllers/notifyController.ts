@@ -9,7 +9,7 @@ async function sendWebhookNotification(req: Request, res: Response) {
     const lastUpdatedString = lastUpdatedDate.toLocaleString();
 
     const user = await User.findOne({ username: username });
-    
+
     if (!user) {
       return res.status(404).send({
         success: false,
@@ -37,7 +37,6 @@ async function sendWebhookNotification(req: Request, res: Response) {
       message: "Webhook sent successfully"
     });
   } catch (err) {
-    console.error(err);
     res.status(400).send({
       success: false,
       message: err.message
@@ -45,4 +44,31 @@ async function sendWebhookNotification(req: Request, res: Response) {
   }
 }
 
-export { sendWebhookNotification };
+async function sendTestNotification(req: Request, res: Response) {
+  try {
+    const { webhook_url } = req.body;
+
+    const endpoint = webhook_url;
+    const embed = {
+      username: "SalesScout Notification",
+      title: "Test Notification",
+      description: `
+        Hello, this is a test notification from SalesScout. :wave:
+      `
+    };
+
+    await axios.post(endpoint, { embeds: [embed] });
+
+    res.status(200).send({
+      success: true,
+      message: "Webhook sent successfully"
+    });
+  } catch (err) {
+    res.status(400).send({
+      success: false,
+      message: err.message
+    });
+  }
+}
+
+export { sendWebhookNotification, sendTestNotification };
