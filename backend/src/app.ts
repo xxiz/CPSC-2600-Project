@@ -29,7 +29,7 @@ connection.then(() => {
 
 const app = express();
 app.use(cors({
-    origin: 'http://localhost:3001',
+    origin: 'http://localhost:3002',
 }));
 app.use(express.json());
 app.use('/', customRoutes);
