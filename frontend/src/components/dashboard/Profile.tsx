@@ -41,6 +41,23 @@ function Profile({ user, setUser, updateUser }: ProfileProps) {
           <h2 className="text-3xl font-bold tracking-tight text-center text-gray-900">
             Profile
           </h2>
+          <div className="flex flex-col mb-5 space-y-1">
+                <label
+                  htmlFor="username"
+                  className="text-sm font-semibold text-gray-600"
+                >
+                  Username
+                </label>
+                <input
+                  type="text"
+                  name="username"
+                  id="username"
+                  className="w-full px-4 py-2 text-gray-500 border border-gray-200 rounded-md cursor-not-allowed focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500"
+                  defaultValue={user.username}
+                  disabled
+                  title="You can't change your username"
+                />
+              </div>
           <form onSubmit={updateUser}>
             <div className="flex flex-col space-y-4">
               <div className="flex flex-col space-y-1">
@@ -111,9 +128,47 @@ function Profile({ user, setUser, updateUser }: ProfileProps) {
 
         <div>
           <div className="mt-10 space-y-4">
-            <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-              Your notification history
-            </h2>
+            <div className="max-w-lg mx-auto">
+              <h2 className="text-3xl font-bold tracking-tight text-center text-gray-900">
+                History
+              </h2>
+              {user.history && user.history.length > 0 ? (
+                <div className="flex flex-col space-y-4">
+                  {user.history.map((item, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-col p-4 mt-4 space-y-2 bg-white rounded-md shadow-md"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                          <a
+                            className="text-sm font-semibold text-gray-600"
+                            href={item.url}
+                          >
+                            {item.title}
+                          </a>
+                        </div>
+                        <span className="text-sm font-semibold text-gray-600">
+                          {item.votes}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex flex-col space-y-4">
+                  <div className="flex flex-col p-4 mt-4 space-y-2 bg-white rounded-md shadow-md">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-2">
+                        <span className="text-sm font-semibold text-gray-600">
+                          No history
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
