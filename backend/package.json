@@ -20,6 +20,7 @@
   "scripts": {
     "dev": "npx tsc-watch --onSuccess \"node dist/app.js\" --noClear",
     "build": "npx tsc",
-    "start": "node dist/app.js"
+    "start": "node dist/app.js",
+    "prod": "npm run build && npm run start"
   }
 }
