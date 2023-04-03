@@ -1,5 +1,5 @@
 import express from 'express';
-import cron from 'node-cron';
+import { CronJob } from 'cron';
 import connection from './db/conn'
 import cors from 'cors';
 
@@ -11,6 +11,9 @@ import Deal from './models/dealModel';
 import Scrape from './models/scrapeModel';
 import { scrape } from './utils/scrape';
 import { pushDeals } from './utils/database';
+import { notifyUser } from './utils/notify';
+import { IUser } from './types';
+import getTrending from './utils/trending';
 
 connection.then(() => {
     console.log('Connected to MongoDB');
@@ -18,7 +21,7 @@ connection.then(() => {
         console.log(`${deals.length} deals found in database`);
     });
     Scrape.find({}).then((scrape) => {
-        console.log(`${scrape.length} scrape results found in database`);
+        console.log(`${scrape.length} scrapes found in database`);
     });
 }).catch((err) => {
     console.log('Error connecting to MongoDB', err);
@@ -31,24 +34,33 @@ app.use(cors({
 app.use(express.json());
 app.use('/', customRoutes);
 
-cron.schedule('* 3 * * *', () => {
+// https://github.com/kelektiv/node-cron/blob/master/examples/every_10_minutes.js
+const job = new CronJob('0 */1 * * * *', async () => {
+    
     const result = scrape(1);
 
     result.then((result) => {
+        
+        console.log(`Scraped ${result.data.length} deals`);
         pushDeals(result);
-
-        // let trending_deals = getTrendingDeals(result);
-        // find all users that have notifications enabled
-        // send them the trending deals
-
-        User.find({ notifications: true }).then((users) => {
-            users.forEach((user) => {
-                
+        
+        let deals = getTrending(result.data);
+        console.log(`Found ${deals.length} trending deals`);
+        
+        User.find({ notification: true }).then((users) => {
+            
+            console.log(`Found ${users.length} users to notify`);
+            
+            users.forEach((user : IUser) => {
+                console.log(`Notifying ${user.username}`);
+                notifyUser(user, deals);
             });
         });
     });
+
 });
 
 app.listen(3000, () => {
     console.log(`Backend running on http://localhost:3000`);
+    job.start();
 });

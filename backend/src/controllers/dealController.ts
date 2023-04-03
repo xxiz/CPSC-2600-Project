@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import Deal from '../models/dealModel';
+import getTrending from '../utils/trending';
 
 
 function getDeals(req: Request, res: Response) {
@@ -18,12 +19,14 @@ function getDeals(req: Request, res: Response) {
 
 function getTrendingDeals(req: Request, res: Response) {
     Deal.find({}).then((deals) => {
-
+        
+        deals = getTrending(deals)
+        
         res.send({
             success: true,
             data: deals
         });
-        
+
     }).catch((err) => {
         res.status(500).send({
             success: false,
@@ -94,4 +97,4 @@ function purgeDeals(req: Request, res: Response) {
     });
 }
 
-export { getDeals, getDealByID, addDeals, deleteDealByID, purgeDeals };
+export { getDeals, getTrendingDeals, getDealByID, addDeals, deleteDealByID, purgeDeals };

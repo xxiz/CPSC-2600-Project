@@ -6,7 +6,9 @@ type ProfileProps = {
   setUser: React.Dispatch<React.SetStateAction<IUser | null>>;
   updateUser: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
 };
+
 function Profile({ user, setUser, updateUser }: ProfileProps) {
+  
   const testWebhook = async () => {
     const endpoint = "http://localhost:3000/api/v1/notify/test";
 
@@ -42,22 +44,22 @@ function Profile({ user, setUser, updateUser }: ProfileProps) {
             Profile
           </h2>
           <div className="flex flex-col mb-5 space-y-1">
-                <label
-                  htmlFor="username"
-                  className="text-sm font-semibold text-gray-600"
-                >
-                  Username
-                </label>
-                <input
-                  type="text"
-                  name="username"
-                  id="username"
-                  className="w-full px-4 py-2 text-gray-500 border border-gray-200 rounded-md cursor-not-allowed focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500"
-                  defaultValue={user.username}
-                  disabled
-                  title="You can't change your username"
-                />
-              </div>
+            <label
+              htmlFor="username"
+              className="text-sm font-semibold text-gray-500"
+            >
+              Username
+            </label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              className="w-full px-4 py-2 text-gray-500 border border-gray-200 rounded-md cursor-not-allowed focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500"
+              defaultValue={user.username}
+              disabled
+              title="You can't change your username"
+            />
+          </div>
           <form onSubmit={updateUser}>
             <div className="flex flex-col space-y-4">
               <div className="flex flex-col space-y-1">
@@ -86,7 +88,7 @@ function Profile({ user, setUser, updateUser }: ProfileProps) {
                   className="mx-auto text-sm font-semibold text-red-600 hover:text-red-500 focus:outline-none focus:text-red-500"
                   onClick={testWebhook}
                 >
-                  Test Your Webhook
+                  Click here to test your webhook
                 </button>
               </div>
               {/* checkbox */}
@@ -96,7 +98,7 @@ function Profile({ user, setUser, updateUser }: ProfileProps) {
                     type="checkbox"
                     name="notifications"
                     id="notifications"
-                    className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
+                    className="w-4 h-4 text-red-600 border-gray-300 rounded cursor-pointer focus:ring-red-500"
                     checked={user.notification}
                     onChange={(e) => {
                       setUser({
@@ -107,7 +109,7 @@ function Profile({ user, setUser, updateUser }: ProfileProps) {
                   />
                   <label
                     htmlFor="notifications"
-                    className="text-sm font-semibold text-gray-600"
+                    className="text-sm font-semibold text-gray-600 cursor-pointer"
                   >
                     Enable notifications
                   </label>

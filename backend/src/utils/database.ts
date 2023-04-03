@@ -6,6 +6,8 @@ async function pushDeals(scrapeReturn: IScrapeReturn) {
 
     let deals = [];
 
+    console.log(`Pushing ${scrapeReturn.data.length} deals to database`);
+
     if (scrapeReturn.data.length > 0) {
         for (let deal of scrapeReturn.data) {
             const existingDeal = await Deal.findOne({ url: deal.url });
@@ -37,6 +39,11 @@ async function pushDeals(scrapeReturn: IScrapeReturn) {
     });
 
     return await scrape.save();
+}
+
+async function notifyUsers() {
+    // find all users that have notifications enabled
+    // send them the trending deals
 }
 
 export { pushDeals };

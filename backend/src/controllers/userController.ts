@@ -1,5 +1,7 @@
+import { IDeal } from './../types/index';
 import express, { Request, Response } from "express";
 import User from "../models/userModel";
+import Deal from "../models/dealModel";
 
 function getUsers(req: Request, res: Response) {
 
@@ -16,22 +18,36 @@ function getUsers(req: Request, res: Response) {
     });
 }
 
-function getUserByUsername(req: Request, res: Response) {
-    User.findOne({ username: req.params.username }).then((user) => {
-        user !== null ? res.send({
-            success: true,
-            data: user
-        }) : res.status(404).send({
-            success: false,
-            message: "User not found"
+async function getUserByUsername(req: Request, res: Response) {
+    try {
+      const user = await User.findOne({ username: req.params.username }).populate('history');
+      if (!user) {
+        res.status(404).send({
+          success: false,
+          message: "User not found"
         });
-    }).catch((err) => {
-        res.status(400).send({
-            success: false,
-            message: err.message
-        });
-    });
-}
+        return;
+      }
+  
+      const history = user.history || [];
+      const dealPromises = history.map((historyDeal) => Deal.findById(historyDeal));
+      const deals = await Promise.all(dealPromises);
+  
+      res.send({
+        success: true,
+        data: {
+          ...user.toObject(),
+          history: deals.filter((deal) => !!deal)
+        }
+      });
+    } catch (err) {
+      res.status(400).send({
+        success: false,
+        message: err.message
+      });
+    }
+  }
+  
 
 function addUser(req: Request, res: Response) {
 

@@ -38,6 +38,9 @@ The backend runs on Express and automatically scrapes the RedFlagDeals forum and
 - `/api/v1/deals` - Returns all the deals in the database
     - Method: `GET`
 
+- `/api/v1/deals/trending` - Returns the latest deal
+    - Method: `GET`
+
 - `/api/v1/deals` - Adds a new deal to the database
     - Method: `POST`
     - Body: `Deal`

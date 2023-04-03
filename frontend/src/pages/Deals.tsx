@@ -22,7 +22,7 @@ function Deals() {
             {deals && deals.map((deal) => (
                 <div key={deal.title}>
                     <h2>{deal.title}</h2>
-                    <p>{deal.description}</p>
+                    <p>{deal.votes} | {deal.replies}</p>
                     <p>{deal.last_updated}</p>
                 </div>
             ))}

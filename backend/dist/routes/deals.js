@@ -6,6 +6,9 @@ const router = (0, express_1.Router)();
 router.get('/', (req, res) => {
     (0, dealController_1.getDeals)(req, res);
 });
+router.get('/trending', (req, res) => {
+    (0, dealController_1.getTrendingDeals)(req, res);
+});
 router.post('/', (req, res) => {
     (0, dealController_1.addDeals)(req, res);
 });
@@ -17,8 +20,5 @@ router.get('/:id', (req, res) => {
 });
 router.delete('/:id', (req, res) => {
     (0, dealController_1.deleteDealByID)(req, res);
-});
-router.get('/run', (req, res) => {
-    res.send('no');
 });
 exports.default = router;
