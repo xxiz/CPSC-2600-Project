@@ -4,3 +4,12 @@ SalesScout is a simple web interface which allows individuals to get notificatio
 >  **NOTE**: As I only had around two weeks to complete this project, there is no authentication implemented. This means that anyone can access and view your webhook/ntfy urls. So it is strongly advised that you do not use your personal webhook/ntfy urls. Or run your own instance of SalesScout.
 
 ## Overview
+
+### Demo
+You can find a live demonstration of this project at [https://a7.wtf/p/salesscout](https://a7.wtf/p/salesscout). The frontend is hosted on Vercel with the backend being hosted on my server which is then being proxied through Cloudflare.
+
+### Features
+- [x] Discord Webhook Notifications
+- [x] Filter Only Highly Upvoted Deals
+- [ ] Deal Lookup by Title
+- [x] Trending Deals (over 2d)
