@@ -12,7 +12,7 @@ type ProfileProps = {
 function Profile({ user, setUser, updateUser }: ProfileProps) {
 
   const testWebhook = async () => {
-    const endpoint = "http://localhost:3000/api/v1/notify/test";
+    const endpoint = "http://localhost:3541/api/v1/notify/test";
 
     const res = await fetch(endpoint, {
       method: "POST",
