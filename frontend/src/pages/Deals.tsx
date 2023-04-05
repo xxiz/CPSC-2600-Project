@@ -8,7 +8,7 @@ function Deals() {
     const [deals, setDeals] = useState<IDeal[]>([]);
 
     const fetchDeals = async () => {
-        const response = await fetch("/backend/api/v1/deals/trending");
+        const response = await fetch("https://api.a7.wtf/api/v1/deals/trending");
         const { data: deals } = await response.json();
         setDeals(deals);
     }
@@ -18,7 +18,7 @@ function Deals() {
     }, []);
 
     const getLastScraped = async (): Promise<string> => {
-        const response = await fetch("/backend/api/v1/scrapes/latest");
+        const response = await fetch("https://api.a7.wtf/api/v1/scrapes/latest");
         const { data: { timestamp } } = await response.json();
         const lastScraped = new Intl.DateTimeFormat('default', { month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true, timeZoneName: 'short' }).format(new Date(timestamp))
         return lastScraped;
