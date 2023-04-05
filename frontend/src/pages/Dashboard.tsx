@@ -15,7 +15,7 @@ function Dashboard() {
   useEffect(() => {
     if (user) {
       const fetchUser = async () => {
-        const endpoint = "http://localhost:3541/api/v1/users/" + user?.username;
+        const endpoint = "https://projects.ashwin.lol/sales-scout-backend/api/v1/users/" + user?.username;
 
         const response = await fetch(endpoint, {
           method: "GET",
@@ -42,12 +42,11 @@ function Dashboard() {
       fetchUser();
     }
   }, [user]);
-      
 
   const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const endpoint = "http://localhost:3541/api/v1/users/" + user?.username;
+    const endpoint = "https://projects.ashwin.lol/sales-scout-backend/api/v1/users/" + user?.username;
 
     const response = await fetch(endpoint, {
       method: "PUT",
@@ -101,7 +100,7 @@ function Dashboard() {
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const endpoint = "http://localhost:3541/api/v1/users/" + username;
+    const endpoint = "https://projects.ashwin.lol/sales-scout-backend/api/v1/users/" + username;
     console.log(endpoint);
 
     const response = await fetch(endpoint, {
@@ -119,7 +118,7 @@ function Dashboard() {
         position: "top-right",
       });
     } else if (response.status === 404) {
-      const endpoint = "http://localhost:3541/api/v1/users";
+      const endpoint = "https://projects.ashwin.lol/sales-scout-backend/api/v1/users";
       const response = await fetch(endpoint, {
         method: "POST",
         headers: {
