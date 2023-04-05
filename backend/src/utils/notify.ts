@@ -8,12 +8,19 @@ async function notifyUser(user: IUser, deals: IDeal[]): Promise<void> {
   const endpoint = user.webhook_url;
 
   for (const deal of deals) {
-    const isDealSent = user.history.find(async (historyDeal) => {
-      const foundDeal = await Deal.findById(historyDeal);
-      return foundDeal?.url === deal.url;
-    });
 
-    if (isDealSent) {
+    const hasInHistory = async () => {
+      const foundUser = await User.findOne({ username });
+      const foundDeal = await Deal.findOne({ url: deal.url });
+
+      if (foundUser && foundDeal && !foundUser.history.includes(foundDeal._id)) {
+        return false;
+      }
+
+      return true;
+    }
+
+    if (hasInHistory) {
       console.log(`Deal ${deal.title} already sent to ${username}`);
       continue;
     }
@@ -38,9 +45,9 @@ async function notifyUser(user: IUser, deals: IDeal[]): Promise<void> {
     try {
       const result = await axios.post(endpoint, { embeds: [embed] });
       if (result.status === 204) {
-        const foundUser = await User.findOne({ username });
-        const foundDeal = await Deal.findOne({ url: deal.url });
-        if (foundUser && foundDeal && !foundUser.history.includes(foundDeal._id)) {
+        if (hasInHistory) {
+          const foundUser = await User.findOne({ username });
+          const foundDeal = await Deal.findOne({ url: deal.url });
           foundUser.history.push(foundDeal._id);
           await foundUser.save();
         }
