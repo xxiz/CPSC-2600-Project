@@ -1,5 +1,7 @@
 import mongoose, { ConnectOptions } from 'mongoose';
-require('dotenv').config();
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const connection = mongoose.connect(process.env.MONGO_URI || "mongodb://user:pass@localhost:54413", {
     useUnifiedTopology: true,

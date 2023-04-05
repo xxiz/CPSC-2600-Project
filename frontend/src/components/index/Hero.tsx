@@ -24,9 +24,9 @@ function Hero() {
 
                 <a
                     className="block w-full px-12 py-3 font-medium text-red-600 rounded shadow text-md hover:text-red-700 focus:outline-none focus:ring active:text-red-500 sm:w-auto"
-                    href="/about"
+                    href="/dashboard"
                 >
-                    Learn More
+                    Get Started
                 </a>
             </div>
         </div>
