@@ -1,9 +1,11 @@
+import React from "react"
+
 function Hero() {
     return (
-        <div className="mx-auto max-w-2xl text-center py-24 sm:py-32">
-            <h1 className="text-3xl font-extrabold sm:text-5xl text-gray-800">
+        <div className="max-w-2xl py-24 mx-auto text-center sm:py-32">
+            <h1 className="text-3xl font-extrabold text-gray-800 sm:text-5xl">
                 Never Miss A Deal!
-                <strong className="font-extrabold text-red-600 block">
+                <strong className="block font-extrabold text-red-600">
                     Get The Deals You Want!
                 </strong>
             </h1>
@@ -12,16 +14,16 @@ function Hero() {
                 Tired of spending hours constantly checking RedFlagDeals for deals? We'll deliver only the best deals!
             </p>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-4 mt-8">
                 <a
-                    className="block w-full rounded bg-red-600 px-12 py-3 text-md font-medium text-white shadow hover:bg-red-700 focus:outline-none focus:ring active:bg-red-500 sm:w-auto"
+                    className="block w-full px-12 py-3 font-medium text-white bg-red-600 rounded shadow text-md hover:bg-red-700 focus:outline-none focus:ring active:bg-red-500 sm:w-auto"
                     href="/deals"
                 >
                     Trending Deals
                 </a>
 
                 <a
-                    className="block w-full rounded px-12 py-3 text-md font-medium text-red-600 shadow hover:text-red-700 focus:outline-none focus:ring active:text-red-500 sm:w-auto"
+                    className="block w-full px-12 py-3 font-medium text-red-600 rounded shadow text-md hover:text-red-700 focus:outline-none focus:ring active:text-red-500 sm:w-auto"
                     href="/about"
                 >
                     Learn More

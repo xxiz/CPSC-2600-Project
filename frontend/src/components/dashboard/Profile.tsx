@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react";
 import toast, { Toaster } from "react-hot-toast";
 import { IUser } from "../../types";
+import React from "react";
 
 type ProfileProps = {
   user: IUser;

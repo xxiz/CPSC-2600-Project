@@ -1,4 +1,4 @@
-// import { ArrowPathIcon, CloudArrowUpIcon, FingerPrintIcon, LockClosedIcon } from '@heroicons/react/24/outline'
+import React from "react"
 
 import { Icon } from "@iconify/react"
 
@@ -32,8 +32,8 @@ const features = [
 function Features() {
   return (
     <div className="py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:text-center">
+      <div className="px-6 mx-auto max-w-7xl lg:px-8">
+        <div className="max-w-2xl mx-auto lg:text-center">
           <h2 className="text-base font-semibold leading-7 text-red-600">Save Your Time</h2>
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Spend Time Saving
@@ -42,13 +42,13 @@ function Features() {
             We do the hard work so you don't have to, sign up and start saving time today! Don't worry about missing a deal, spend more time saving money!
           </p>
         </div>
-        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
+        <div className="max-w-2xl mx-auto mt-16 sm:mt-20 lg:mt-24 lg:max-w-4xl">
           <dl className="grid max-w-xl grid-cols-1 gap-y-10 gap-x-8 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
             {features.map((feature) => (
               <div key={feature.name} className="relative pl-16">
                 <dt className="text-base font-semibold leading-7 text-gray-900">
-                  <div className="absolute top-0 left-0 flex h-10 w-10 items-center justify-center rounded-lg bg-red-600">
-                    <Icon icon={feature.icon} className="h-6 w-6 text-white" aria-hidden="true" />
+                  <div className="absolute top-0 left-0 flex items-center justify-center w-10 h-10 bg-red-600 rounded-lg">
+                    <Icon icon={feature.icon} className="w-6 h-6 text-white" aria-hidden="true" />
                   </div>
                   {feature.name}
                 </dt>

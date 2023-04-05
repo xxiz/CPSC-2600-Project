@@ -1,6 +1,6 @@
 // This NavBar is a modified version of: https://tailwindui.com/components/application-ui/navigation/navbars
 // The original code is licensed under the MIT License.
-
+import React from "react"
 import { Disclosure } from "@headlessui/react";
 import { Icon } from "@iconify/react";
 

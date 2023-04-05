@@ -1,8 +1,11 @@
+import React from "react";
+
 type SignInProps = {
   handleLogin: (e: React.FormEvent<HTMLFormElement>) => void;
   setUsername: React.Dispatch<React.SetStateAction<string>>;
   username: string;
 };
+
 function SignIn({ handleLogin, setUsername, username }: SignInProps) {
   return (
     <div className="flex items-center justify-center min-h-full px-4 py-12 sm:px-6 lg:px-8">
