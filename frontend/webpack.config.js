@@ -2,6 +2,11 @@ const path = require("path");
 
 module.exports = {
   entry: "./src/index.tsx",
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
+  },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
   },
@@ -20,11 +25,7 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: [
-          "style-loader",
-          "css-loader",
-          "postcss-loader",
-        ],
+        use: ["style-loader", "css-loader", "postcss-loader"],
       },
     ],
   },

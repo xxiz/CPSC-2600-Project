@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import Layout from "../components/Layout";
 import { IUser } from "../types";
 import toast, { Toaster } from "react-hot-toast";
-import SignIn from "../components/dashboard/SignIn";
-import Profile from "../components/dashboard/Profile";
+
+// Use lazy loading for SignIn and Profile components
+const SignIn = lazy(() => import("../components/dashboard/SignIn"));
+const Profile = lazy(() => import("../components/dashboard/Profile"));
 
 function Dashboard() {
   const [user, setUser] = useState<IUser | null>(
@@ -164,15 +166,17 @@ function Dashboard() {
     <Layout title="Dashboard">
       <Toaster />
       <div className="max-w-screen-xl px-4 py-10 mx-auto">
-        {!user ? (
-          <SignIn
-            username={username}
-            setUsername={setUsername}
-            handleLogin={handleLogin}
-          />
-        ) : (
-          <Profile user={user} setUser={setUser} updateUser={handleUpdate} />
-        )}
+        <Suspense fallback={<div>Loading...</div>}>
+          {!user ? (
+            <SignIn
+              username={username}
+              setUsername={setUsername}
+              handleLogin={handleLogin}
+            />
+          ) : (
+            <Profile user={user} setUser={setUser} updateUser={handleUpdate} />
+          )}
+        </Suspense>
       </div>
     </Layout>
   );

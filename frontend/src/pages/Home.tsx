@@ -1,6 +1,7 @@
-import Hero from "../components/index/Hero";
 import Layout from "../components/Layout";
-import React from "react";
+import React, { lazy, Suspense } from "react";
+
+const Hero = lazy(() => import("../components/index/Hero"));
 
 
 function Home() {
@@ -14,7 +15,9 @@ function Home() {
                     alt="RedFlagDeals Screenshot"
                     className="mx-auto rounded-lg shadow-md md:block max-h-[400px] mt-10 sm:mt-20"
                 />
-                <Hero />
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Hero />
+                </Suspense>
             </div>
         </Layout>
     )
