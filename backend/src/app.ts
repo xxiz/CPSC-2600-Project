@@ -1,17 +1,23 @@
+
+// Modules
 import express from 'express';
 import { CronJob } from 'cron';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
+// Types
 import { IUser } from './types';
 import connection from './db/conn'
 
+// Routes
 import customRoutes from './routes';
 
+// Models
 import User from './models/userModel';
 import Deal from './models/dealModel';
 import Scrape from './models/scrapeModel';
 
+// Utils
 import { scrape } from './utils/scrape';
 import { pushDeals } from './utils/database';
 import { notifyUser } from './utils/notify';
@@ -39,26 +45,12 @@ connection.then(() => {
 // Express
 const app = express();
 
-// Get CORS origin from environment variable
-const accessControlAllowOrigins = () => {
-    
-    const origins = process.env.CORS_ORIGIN.split(',').map((origin) => origin.trim());
-    
-    return (req, callback) => {
-        const origin = req.header('Origin');
+// Convert env variable to array
+const origins = process.env.CORS_ORIGIN.split(',').map((origin) => origin.trim());
 
-        if (origins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error('CORS Disallow'));
-        }
-
-    };
-};
-
-// CORS
 app.use(cors({
-    origin: accessControlAllowOrigins || 'http://localhost:8080',
+    origin: origins,
+    optionsSuccessStatus: 200
 }));
 
 // Parse JSON
@@ -94,9 +86,10 @@ new CronJob(timing, async () => {
 },
     null,
     true,
-    'America/Vancouver'
+    'America/Los_Angeles'
 );
 
+// Start server
 const port = process.env.PORT || '3000';
 app.listen(port, () => {
     console.log(`Backend running on http://localhost:${port}`);

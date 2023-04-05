@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import { IUser } from "../types";
 import toast, { Toaster } from "react-hot-toast";
@@ -11,6 +11,38 @@ function Dashboard() {
   );
 
   const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    if (user) {
+      const fetchUser = async () => {
+        const endpoint = "http://localhost:3000/api/v1/users/" + user?.username;
+
+        const response = await fetch(endpoint, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (response.status === 200) {
+          const { data: user } = await response.json();
+          setUser(user);
+          localStorage.setItem("user", JSON.stringify(user));
+        } else {
+          const error = await response.json();
+          toast.error("Error while updating user: " + error.message, {
+            position: "top-center",
+            style: {
+              width: "100%",
+            },
+            duration: 2000,
+          });
+        }
+      };
+      fetchUser();
+    }
+  }, [user]);
+      
 
   const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

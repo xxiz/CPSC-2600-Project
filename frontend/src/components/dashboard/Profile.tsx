@@ -149,7 +149,7 @@ function Profile({ user, setUser, updateUser }: ProfileProps) {
                             className="text-sm font-medium text-gray-600"
                             href={item.url}
                           >
-                            {item.title.length > 100 ? item.title.substring(0, 100) + `...` : item.title}
+                            {item.title.length > 50 ? item.title.substring(0, 50) + `...` : item.title}
                           </a>
                         </div>
                         <span className="flex items-center text-sm font-semibold text-center text-gray-600">
