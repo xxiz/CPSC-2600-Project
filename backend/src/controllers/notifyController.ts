@@ -1,7 +1,9 @@
 import express, { Request, Response } from "express";
 import axios from "axios";
 
+// Refrence: https://discord.com/developers/docs/resources/webhook#execute-webhook
 async function sendTestNotification(req: Request, res: Response) {
+  
   try {
     const { webhook_url } = req.body;
 

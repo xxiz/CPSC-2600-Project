@@ -2,6 +2,7 @@ import { IScrapeReturn } from "./../types/index";
 import Deal from "./../models/dealModel";
 import Scrape from "../models/scrapeModel";
 
+// Refrence: https://mongoosejs.com/docs/api/model.html#Model.find()
 async function pushDeals(scrapeReturn: IScrapeReturn) {
   let deals = [];
 

@@ -3,6 +3,7 @@ import cheerio from "cheerio";
 import { IScrapeReturn } from "../types";
 import moment from "moment";
 
+
 async function scrape(page: number = 1): Promise<IScrapeReturn> {
   const start_time = new Date().getTime();
 
@@ -13,6 +14,7 @@ async function scrape(page: number = 1): Promise<IScrapeReturn> {
       : "https://forums.redflagdeals.com/hot-deals-f9/trending/";
 
   // spoof the headers to make the request look like it's coming from a user browsing the forums, don't really need this but just incase
+  // Headers from inspecting RedFlagDeals.com Request
   const spoof = {
     Accept:
       "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",

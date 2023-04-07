@@ -18,6 +18,7 @@ function Card({ deals }: { deals: IDeal[] }) {
           </h3>
           <p className="mb-2 text-gray-600">{deal.description}</p>
           <p className="mb-1 text-sm text-gray-500">
+            {/* Refrence: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl */}
             {new Intl.DateTimeFormat("default", {
               month: "long",
               day: "numeric",

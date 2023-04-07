@@ -64,6 +64,8 @@ app.use(express.json());
 app.use("/", customRoutes);
 
 // Job to handle scraping for deals and notifying users
+
+// Refrence: https://www.npmjs.com/package/cron & https://crontab.guru/
 const timing = process.env.CRON_TIMING || "0 */3 * * * *";
 new CronJob(
   timing,

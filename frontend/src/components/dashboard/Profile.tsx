@@ -25,6 +25,7 @@ function Profile({ user, setUser, updateUser }: ProfileProps) {
 
     const promise = await res.json();
 
+    // Refrence: https://react-hot-toast.com/docs
     if (promise.success) {
       toast.success("Webhook is working!", {
         position: "top-right",

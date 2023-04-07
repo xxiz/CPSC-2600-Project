@@ -1,5 +1,7 @@
-// This NavBar is a modified version of: https://tailwindui.com/components/application-ui/navigation/navbars
+// This NavBar is originally based and inspired on https://tailwindui.com/components/application-ui/navigation/navbars
+// Some aspects of the code below were copied and modified to fit the needs of this project.
 // The original code is licensed under the MIT License.
+
 import React from "react";
 import { Disclosure } from "@headlessui/react";
 import { Icon } from "@iconify/react";
@@ -22,7 +24,6 @@ function NavBar() {
           <div className="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div className="relative flex items-center justify-between h-16">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                {/* Mobile menu button*/}
                 <Disclosure.Button className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
                   {open ? (

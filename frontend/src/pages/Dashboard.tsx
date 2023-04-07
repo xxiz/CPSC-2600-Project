@@ -32,6 +32,7 @@ function Dashboard() {
           localStorage.setItem("user", JSON.stringify(user));
         } else {
           const error = await response.json();
+          // Refrence: https://react-hot-toast.com/docs
           toast.error("Error while updating user: " + error.message, {
             position: "top-center",
             style: {

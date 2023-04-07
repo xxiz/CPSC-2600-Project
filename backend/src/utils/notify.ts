@@ -3,6 +3,7 @@ import User from "./../models/userModel";
 import axios from "axios";
 import Deal from "../models/dealModel";
 
+// Refrence: https://discord.com/developers/docs/resources/webhook#execute-webhook
 async function notifyUser(user: IUser, deals: IDeal[]): Promise<void> {
   const { username, webhook_url } = user;
 
