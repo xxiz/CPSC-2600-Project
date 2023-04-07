@@ -86,7 +86,7 @@ The backend runs on Express and automatically scrapes the RedFlagDeals forum and
 ## Running Locally
 ```bash
 git clone git@github.com:xxiz/CPSC-2600-Project.git
-cd CPSC-2600-Projecthttps://api.a7.wtf
+cd CPSC-2600-Project
 docker-compose up -d # if you are going to run a mongodb locally, if not skip this step and refer to the note below
 npm install
 npm run dev
