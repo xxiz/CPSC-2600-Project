@@ -6,10 +6,19 @@ SalesScout is a simple web interface which allows individuals to get notificatio
 ## Overview
 
 ### Demo
-You can find a live demonstration of this project at [https://a7.wtf/p/salesscout](https://a7.wtf/p/salesscout). The frontend is hosted on Vercel with the backend being hosted on my server which is then being proxied through Cloudflare.
+You can find a live demonstration of this project at [https://zoro.a7.wtf/](https://zoro.a7.wtf/). The demo instance is running on a hosted Linux VPS.
 
 ### Features
-- [x] Discord Webhook Notifications
-- [x] Filter Only Highly Upvoted Deals
-- [ ] Deal Lookup by Title
-- [x] Trending Deals (over 2d)
+- Sign up by providing a username
+- Customize webhook URL
+- Get notifications via WebHooks when deals are trending
+- Integration with Discord Webhooks
+- Web interface built using React
+- Backend built using Node.js and Express
+- Database built using MongoDB
+- Data scraped from redflagdeals.com
+
+
+### Setup/Running Locally
+- [Backend](backend/README.md)
+- [Frontend](frontend/README.md)
