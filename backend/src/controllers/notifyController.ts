@@ -11,19 +11,19 @@ async function sendTestNotification(req: Request, res: Response) {
       title: "Test Notification",
       description: `
         Hello, this is a test notification from SalesScout. :wave:
-      `
+      `,
     };
 
     await axios.post(endpoint, { embeds: [embed] });
 
     res.status(200).send({
       success: true,
-      message: "Webhook sent successfully"
+      message: "Webhook sent successfully",
     });
   } catch (err) {
     res.status(400).send({
       success: false,
-      message: err.message
+      message: err.message,
     });
   }
 }

@@ -38,7 +38,6 @@ function SignIn({ handleLogin, setUsername, username }: SignInProps) {
           <div>
             <button
               type="submit"
-              // block w-full rounded bg-red-600 px-12 py-3 text-md font-medium text-white shadow  sm:w-auto
               className="relative flex justify-center w-full px-3 py-2 text-sm font-semibold text-white bg-red-600 rounded-md group hover:bg-red-700 focus:outline-none focus:ring active:bg-red-500"
             >
               Sign In

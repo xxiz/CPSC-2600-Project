@@ -1,7 +1,7 @@
-import { IDeal, IUser } from './../types/index';
-import User from './../models/userModel';
-import axios from 'axios';
-import Deal from '../models/dealModel';
+import { IDeal, IUser } from "./../types/index";
+import User from "./../models/userModel";
+import axios from "axios";
+import Deal from "../models/dealModel";
 
 async function notifyUser(user: IUser, deals: IDeal[]): Promise<void> {
   const { username, webhook_url } = user;
@@ -9,7 +9,7 @@ async function notifyUser(user: IUser, deals: IDeal[]): Promise<void> {
   for (const deal of deals) {
     const [foundUser, foundDeal] = await Promise.all([
       User.findOne({ username }),
-      Deal.findOne({ url: deal.url })
+      Deal.findOne({ url: deal.url }),
     ]);
 
     if (foundUser && foundDeal && !foundUser.history.includes(foundDeal._id)) {
@@ -27,7 +27,7 @@ async function notifyUser(user: IUser, deals: IDeal[]): Promise<void> {
           **Votes:** ${deal.votes}
           **Replies:** ${deal.replies}
           **Last Updated:** ${lastUpdatedString}
-        `
+        `,
       };
 
       try {
@@ -37,7 +37,9 @@ async function notifyUser(user: IUser, deals: IDeal[]): Promise<void> {
           await foundUser.save();
         }
       } catch (err) {
-        console.log(`Error sending webhook to ${username} @ ${webhook_url}\n${err.message}`);
+        console.log(
+          `Error sending webhook to ${username} @ ${webhook_url}\n${err.message}`
+        );
       }
     } else {
       console.log(`Deal ${deal.title} already sent to ${username}`);

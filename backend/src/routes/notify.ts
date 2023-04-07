@@ -1,10 +1,10 @@
-import { Router } from 'express';
-import { sendTestNotification } from '../controllers/notifyController';
+import { Router } from "express";
+import { sendTestNotification } from "../controllers/notifyController";
 
 const router = Router();
 
-router.post('/test', (req, res) => {
-    sendTestNotification(req, res);
+router.post("/test", (req, res) => {
+  sendTestNotification(req, res);
 });
 
 export default router;

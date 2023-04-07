@@ -1,27 +1,27 @@
 export interface IDeal {
-    title: string;
-    url: string;
-    description?: string;
-    last_updated: string;
-    votes: number;
-    replies: number;
+  title: string;
+  url: string;
+  description?: string;
+  last_updated: string;
+  votes: number;
+  replies: number;
 }
 
 export interface IScrape {
-    count: number;
-    timestamp: number;
-    elapsed_ms: number;
-    deals: IDeal[];
+  count: number;
+  timestamp: number;
+  elapsed_ms: number;
+  deals: IDeal[];
 }
 
 export interface IUser {
-    username: string;
-    webhook_url?: string;
-    notification: boolean;
-    history: IDeal[];
+  username: string;
+  webhook_url?: string;
+  notification: boolean;
+  history: IDeal[];
 }
 
 export interface IScrapeReturn {
-    data: IDeal[];
-    start_time: number;
+  data: IDeal[];
+  start_time: number;
 }

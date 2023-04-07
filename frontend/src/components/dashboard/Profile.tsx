@@ -10,7 +10,6 @@ type ProfileProps = {
 };
 
 function Profile({ user, setUser, updateUser }: ProfileProps) {
-
   const testWebhook = async () => {
     const endpoint = "https://api.a7.wtf/api/v1/notify/test";
 
@@ -149,11 +148,14 @@ function Profile({ user, setUser, updateUser }: ProfileProps) {
                             className="text-sm font-medium text-gray-600"
                             href={item.url}
                           >
-                            {item.title.length > 50 ? item.title.substring(0, 50) + `...` : item.title}
+                            {item.title.length > 50
+                              ? item.title.substring(0, 50) + `...`
+                              : item.title}
                           </a>
                         </div>
                         <span className="flex items-center text-sm font-semibold text-center text-gray-600">
-                          <Icon icon="bxs:upvote" className="mr-1" /> {item.votes}
+                          <Icon icon="bxs:upvote" className="mr-1" />{" "}
+                          {item.votes}
                         </span>
                       </div>
                     </div>
