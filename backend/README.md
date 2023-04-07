@@ -13,10 +13,10 @@ The backend runs on Express and automatically scrapes the RedFlagDeals forum and
 - [cheerio](https://www.npmjs.com/package/cheerio) - A library used to parse HTML and extract the relevant data from the scraped pages.
 - [dotenv](https://www.npmjs.com/package/dotenv) - A library used to load environment variables from a .env file, which includes the database connection string.
 - [mongoose](https://www.npmjs.com/package/mongoose) - An Object Data Modeling (ODM) library used to interact with the MongoDB database where the deals are stored.
-- [node-cron](https://www.npmjs.com/package/node-cron) - A library used to schedule the scraping function to run at regular intervals.
+- [cors](https://www.npmjs.com/package/cron) - Bypass Cross Origin Policy to allow access from different domain
+- [cron](https://www.npmjs.com/package/cron) - A library used to schedule the scraping function to run at regular intervals.
 - [moment](https://www.npmjs.com/package/moment) - A library used to parse, validate, manipulate, and display dates and times in javascript.
 - [typescript](https://www.npmjs.com/package/typescript) - A typed superset of javascript used to improve overall code quality and readability.
-- [eslint](https://www.npmjs.com/package/eslint) - A library used to lint the code to improve code quality.
 - [nodemon](https://www.npmjs.com/package/nodemon) - A library used to automatically restart the server when changes are made during development.
 
 ### Project
